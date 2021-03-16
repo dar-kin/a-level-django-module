@@ -1,0 +1,6 @@
+<p>Hello {% if request.user.is_authenticated %}{{ request.user.username }}.
+    You have ${{ request.user.wallet }}.
+    <a href="{% url 'myuser:logout' %}">Logout</a>
+    {% else %}Anonymous user. <a href="{% url 'myuser:login' %}">Please log in</a>
+    {% endif %}
+</p>
