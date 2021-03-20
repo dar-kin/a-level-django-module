@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from shop.views import RedirectToMainView
 
 urlpatterns = [
     path("myuser/", include("myuser.urls", namespace="myuser")),
     path('admin/', admin.site.urls),
     path("shop/", include("shop.urls", namespace="shop")),
+    path("", RedirectToMainView.as_view()),
 ]
 
 if settings.DEBUG:

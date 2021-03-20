@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, UpdateView, CreateView
+from django.views.generic import TemplateView, ListView, UpdateView, CreateView, RedirectView
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, reverse
 from django.shortcuts import get_object_or_404
@@ -101,3 +101,7 @@ class ReturnList(SuperUserRequired, ListView):
         else:
             obj.delete()
             return redirect(reverse("shop:return_list"))
+
+
+class RedirectToMainView(RedirectView):
+    url = reverse_lazy("shop:main")
