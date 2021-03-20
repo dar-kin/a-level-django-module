@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %} Orders list {% endblock %}
+
+{% block content %}
+    {% include "user.html" %}
+<h2>Order list</h2>
+    <table border="1">
+    <tr>
+        <td>id</td>
+        <td>Product</td>
+        <td>Amount</td>
+        <td>Date</td>
+        <td>Total cost</td>
+    </tr>
+{% for elem in object_list %}
+    <tr>
+        <td>{{ elem.id }}</td>
+        <td>Product: {{ elem.product }}</td>
+        <td>Amount: {{ elem.amount }}</td>
+        <td>Date: {{ elem.create_date }}</td>
+        <td>Total cost: {{ elem.total_cost }}</td>
+
+        <td><form method="post" action="{% url 'shop:orders' %}">
+                {% csrf_token %}
+                {% if order == elem.id %}
+                    {{ error_form.as_p }}
+                {% else %}
+                    {{ form.as_p }}
+                {% endif %}
+                <input name="order" type="hidden" value="{{ elem.id }}">
+                <input type="submit" value="Return">
+            </form></td>
+    </tr>
+{% endfor %}
+        {% include "pagination.html" %}
+{% endblock %}

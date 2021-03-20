@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %} Return list {% endblock %}
+
+{% block content %}
+    {% include "user.html" %}
+<h2>Return list</h2>
+    <table border="1">
+    <tr>
+        <td>Order</td>
+        <td>Date</td>
+        <td>Client</td>
+    </tr>
+{% for elem in object_list %}
+    <tr>
+        <td>{{ elem.order }}</td>
+        <td>{{ elem.create_date }}</td>
+        <td>{{ elem.order.user }}</td>
+        <td><form method="post" action="{% url 'shop:return_list' %}">
+        {% csrf_token %}
+        <input name="return" type="hidden" value="{{ elem.id }}">
+            <input name="approve" value="approve" type="hidden">
+        <input type="submit" value="Approve">
+        </form></td>
+        <td><form method="post" action="{% url 'shop:return_list' %}">
+        {% csrf_token %}
+        <input name="return" type="hidden" value="{{ elem.id }}">
+        <input type="submit" value="Discard">
+        </form></td>
+    </tr>
+{% endfor %}
+    {% include "pagination.html" %}
+{% endblock %}

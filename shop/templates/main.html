@@ -3,5 +3,6 @@
 
 {% block content %}
     <h1>Welcome to main page</h1>
+    <p><a href="{% url 'shop:product_list' %}">Product list</a></p>
     {% include "user.html" %}
 {% endblock %}

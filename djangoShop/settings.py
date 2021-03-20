@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from django.urls import reverse_lazy
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -120,9 +121,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
-
 AUTH_USER_MODEL = 'myuser.MyUser'
 LOGIN_URL = reverse_lazy("myuser:login")
 LOGIN_REDIRECT_URL = reverse_lazy("shop:main")
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/")
+MEDIA_URL = "/media/"

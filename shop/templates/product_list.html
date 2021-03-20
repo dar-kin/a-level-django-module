@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Product list {% endblock %}
+
+{% block content %}
+    {% include "user.html" %}
+<h2>Product list</h2>
+    <table border="1">
+    <tr>
+        <td>Name</td>
+        <td>Amount</td>
+        <td>Cost per unit</td>
+        <td>Photo</td>
+    </tr>
+{% for elem in object_list %}
+    <tr>
+        <td>{{ elem.name }}</td>
+        <td>{{ elem.amount }}</td>
+        <td>{{ elem.cost }}</td>
+        <td><img src="{% if elem.photo %}{{ elem.photo.url}}{% else %}{% static "products/no_image.png" %}{% endif %}" width="150">
+        </td>
+    {% if request.user.is_superuser %}
+    <td><a href="{% url 'shop:update_product' elem.id %}">Update</a></td>
+    {% else %}
+        {% if request.user.is_authenticated %}
+        <td><form method="post" action="{% url 'shop:product_list' %}">
+            {% csrf_token %}
+            {% if product == elem.id %}
+                {{ error_form.as_p }}
+            {% else %}
+            {{ form.as_p }}
+            {% endif %}
+            <input name="product" type="hidden" value="{{ elem.id }}">
+            <input name="user" type="hidden" value="{{ request.user.id }}">
+            <input type="submit" value="Buy">
+        </form></td>
+            {% endif %}
+    {% endif %}
+    </tr>
+{% endfor %}
+    </table>
+{% include "pagination.html" %}
+{% endblock %}

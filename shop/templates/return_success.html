@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %} Return success {% endblock %}
+
+{% block content %}
+    <h2>Return success</h2>
+<a href="{% url 'shop:product_list' %}">Product list</a>
+<a href="{% url 'shop:orders' %}">Order list</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %} Add product {% endblock %}
+
+{% block content %}
+<form method="post" action="{% url 'shop:add_product' %}" enctype="multipart/form-data">
+{{ form.as_p }}
+{% csrf_token %}
+<input type="submit" value="Create">
+</form>
+{% endblock %}

@@ -1,7 +1,9 @@
-from django.shortcuts import render
 from django.contrib.auth.views import LoginView, LogoutView
+from django.http import HttpResponseRedirect
+from django.contrib.auth import login
 from django.views.generic import CreateView
-from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from .forms import MyUserCreationForm
 
 
 class Login(LoginView):
@@ -14,7 +16,11 @@ class Logout(LogoutView):
 
 
 class Register(CreateView):
-    form_class = UserCreationForm
+    form_class = MyUserCreationForm
     template_name = "register.html"
+    success_url = reverse_lazy("shop:main")
 
-
+    def form_valid(self, form):
+        self.object = form.save()
+        login(self.request, self.object)
+        return HttpResponseRedirect(self.get_success_url())

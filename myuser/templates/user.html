@@ -1,6 +1,19 @@
+
+
 <p>Hello {% if request.user.is_authenticated %}{{ request.user.username }}.
     You have ${{ request.user.wallet }}.
-    <a href="{% url 'myuser:logout' %}">Logout</a>
+    <table border="1">
+        <tr>
+            <td><a href="{% url 'myuser:logout' %}">Logout</a></td>
+            <td><a href="{% url 'shop:product_list' %}">Product list</a></td>
+            <td><a href="{% url 'shop:orders' %}">Orders</a></td>
+            {% if request.user.is_superuser %}
+                <td><a href="{% url 'shop:return_list' %}">Returns</a></td>
+                <td><a href="{% url 'shop:add_product' %}">Add product</a></td>
+             {% endif %}
+        </tr>
+    </table>
     {% else %}Anonymous user. <a href="{% url 'myuser:login' %}">Please log in</a>
     {% endif %}
+<hr>
 </p>
