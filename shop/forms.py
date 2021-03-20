@@ -40,7 +40,6 @@ class ReturnForm(ModelForm):
 
 
 class CreateUpdateProductForm(ModelForm):
-    photo = ImageField(label="Upload image")
 
     def clean(self):
         cleaned_data = super().clean()
@@ -53,4 +52,4 @@ class CreateUpdateProductForm(ModelForm):
 
     class Meta:
         model = Product
-        fields = ("name", "description", "cost", "amount")
+        fields = ("name", "description", "cost", "amount", "photo")
