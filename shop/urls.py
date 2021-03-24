@@ -15,5 +15,5 @@ urlpatterns = [
     path("add_product", CreateProductView.as_view(), name="add_product"),
     path("create_order", CreateOrder.as_view(), name="create_order"),
     path("create_return", CreateReturn.as_view(), name="create_return"),
-    path("delete_return", DeleteReturn.as_view(), name="delete_return"),
+    path("delete_return/<int:pk>", DeleteReturn.as_view(), name="delete_return"),
 ]

@@ -29,8 +29,16 @@ class Order(models.Model):
             raise NotEnoughProductException
         elif self.total_cost > self.user.wallet:
             raise NotEnoughMoneyException
+        self.user.wallet -= self.total_cost
+        self.product.amount -= self.amount
+        self.user.save()
+        self.product.save()
         super().save(force_insert=False, force_update=False, using=None, update_fields=None)
 
+    def delete(self, using=None, keep_parents=False):
+        self.user.wallet += self.total_cost
+        self.product.amount += self.amount
+        super().delete(using=None, keep_parents=False)
 
     @property
     def total_cost(self):
@@ -43,3 +51,8 @@ class Return(models.Model):
 
     class Meta:
         ordering = ["create_date"]
+
+    def delete(self, using=None, keep_parents=False, approved=False):
+        if approved:
+            self.order.delete()
+        super().delete(using=None, keep_parents=False)

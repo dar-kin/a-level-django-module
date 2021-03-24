@@ -15,13 +15,13 @@
         <td>{{ elem.order }}</td>
         <td>{{ elem.create_date }}</td>
         <td>{{ elem.order.user }}</td>
-        <td><form method="post" action="{% url 'shop:delete_return' %}">
+        <td><form method="post" action="{% url 'shop:delete_return' elem.id %}">
         {% csrf_token %}
         <input name="return" type="hidden" value="{{ elem.id }}">
             <input name="approve" value="approve" type="hidden">
         <input type="submit" value="Approve">
         </form></td>
-        <td><form method="post" action="{% url 'shop:delete_return' %}">
+        <td><form method="post" action="{% url 'shop:delete_return' elem.id %}">
         {% csrf_token %}
         <input name="return" type="hidden" value="{{ elem.id }}">
         <input type="submit" value="Discard">
