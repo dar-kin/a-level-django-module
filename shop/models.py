@@ -1,5 +1,6 @@
 from django.db import models
 from myuser.models import MyUser
+from .exceptions import NotEnoughMoneyException, NotEnoughProductException
 
 
 class Product(models.Model):
@@ -21,6 +22,15 @@ class Order(models.Model):
 
     class Meta:
         ordering = ["create_date"]
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        if self.product.amount < self.amount:
+            raise NotEnoughProductException
+        elif self.total_cost > self.user.wallet:
+            raise NotEnoughMoneyException
+        super().save(force_insert=False, force_update=False, using=None, update_fields=None)
+
 
     @property
     def total_cost(self):

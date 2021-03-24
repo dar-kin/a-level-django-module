@@ -1,0 +1,347 @@
+[
+{
+  "model": "myuser.myuser",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$DQtvbV8Ai5CU$mxd70BSTKM7V9ga6aWkX0dbSPEuZwB7aCyIjvf349EA=",
+    "last_login": "2021-03-20T13:23:34.418Z",
+    "is_superuser": true,
+    "username": "darkin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-03-15T09:33:30.494Z",
+    "wallet": "1140.00",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "myuser.myuser",
+  "pk": 2,
+  "fields": {
+    "password": "1",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user1",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-03-15T09:37:31.953Z",
+    "wallet": "0.00",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "myuser.myuser",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$5dYVREthMgfo$ygpwm47lumqOuB/sYB0JOfLPo+KzDx3YaS7tQa6Yqao=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user2",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-03-16T10:18:05.301Z",
+    "wallet": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "myuser.myuser",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$RSwdRnsJQkXZ$5nlN/D1lC4GV4F6tFTit5UVwL0OVcBhYHpEH9mVXwMM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user6",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-03-16T10:25:02.584Z",
+    "wallet": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "myuser.myuser",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$yZ4nJzAidQ5Y$Hfj+qf7HbrR4izn8+PX7TN18JTuSpmeoNSs4y7tvTlA=",
+    "last_login": "2021-03-18T12:32:07.571Z",
+    "is_superuser": false,
+    "username": "user10",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-03-16T10:25:50.284Z",
+    "wallet": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "myuser.myuser",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$kDvXl3Ec5tmp$/NK/oyLOavYi7GgnSKfg0QI5vv6XLeQTxwd/pP5RN4g=",
+    "last_login": "2021-03-16T10:29:11.574Z",
+    "is_superuser": false,
+    "username": "user45",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-03-16T10:28:30.292Z",
+    "wallet": "10000.00",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "myuser.myuser",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$9Jv9Yh3OlYmh$1DJ4Cg/1tTFAUQxzWGpgvGkRTAt+n308WOzKs50gFj8=",
+    "last_login": "2021-03-16T15:44:59.415Z",
+    "is_superuser": false,
+    "username": "user64",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-03-16T15:44:59.165Z",
+    "wallet": "10000.00",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "myuser.myuser",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$1iwLtPRlPQKc$9P7Nga/wFCnUWgIE4stC9eFlwR1hLd/0VLdvyBNCcNM=",
+    "last_login": "2021-03-16T15:46:02.115Z",
+    "is_superuser": false,
+    "username": "user98998",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-03-16T15:46:01.863Z",
+    "wallet": "10000.00",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "myuser.myuser",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$RRT9tn1jNIVg$ezH3XJAR1YdSPwqTvdpXyiBVxonpkfvCdaqvWMO7ZDU=",
+    "last_login": "2021-03-16T15:48:29.920Z",
+    "is_superuser": false,
+    "username": "user123",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-03-16T15:48:29.667Z",
+    "wallet": "10000.00",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "myuser.myuser",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$SWVSVe3rl2Es$oM2JzaFrAzuLY73qxn/jMKlKBxetpT2+sXw9Z35KdZ0=",
+    "last_login": "2021-03-16T15:50:45.490Z",
+    "is_superuser": false,
+    "username": "user1234",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-03-16T15:49:26.773Z",
+    "wallet": "10000.00",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "myuser.myuser",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$YX2ld1mh1iJh$DrRlGMlMS5FtH08CMKBzes37mCvbwpwH2qwll8kJEyI=",
+    "last_login": "2021-03-16T15:55:42.896Z",
+    "is_superuser": false,
+    "username": "user56",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-03-16T15:55:23.778Z",
+    "wallet": "10000.00",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "myuser.myuser",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$ABEdUVDTt37c$elnoJd2oX7iLZQwaucLGKoiGFm01DWXYlqyJ6FlbyYs=",
+    "last_login": "2021-03-19T12:32:40.500Z",
+    "is_superuser": false,
+    "username": "user555",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-03-16T16:07:36.193Z",
+    "wallet": "1000.00",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 1,
+  "fields": {
+    "name": "Aboba",
+    "description": "sss",
+    "cost": "70.00",
+    "amount": 102,
+    "photo": "products/photo_2021-02-16_15-26-25.jpg"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 2,
+  "fields": {
+    "name": "Another aboba",
+    "description": "aboba",
+    "cost": "90.88",
+    "amount": 100,
+    "photo": "products/�����.png"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 3,
+  "fields": {
+    "name": "Aboba 3.0",
+    "description": "Aboba",
+    "cost": "40.00",
+    "amount": 90,
+    "photo": ""
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 4,
+  "fields": {
+    "name": "Aboba 4.0",
+    "description": "dffdssf",
+    "cost": "78.00",
+    "amount": 10,
+    "photo": "products/is-for-me-meme-2_58yW1H2.png"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 5,
+  "fields": {
+    "name": "Aboba 5.0",
+    "description": "dffdd",
+    "cost": "19.00",
+    "amount": 10,
+    "photo": ""
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 6,
+  "fields": {
+    "name": "Space juggernaut",
+    "description": null,
+    "cost": "20.00",
+    "amount": 20,
+    "photo": ""
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 7,
+  "fields": {
+    "name": "Space sniper",
+    "description": null,
+    "cost": "30.00",
+    "amount": 10,
+    "photo": ""
+  }
+},
+  {
+  "model": "shop.product",
+  "pk": 8,
+  "fields": {
+    "name": "Space dinosaur",
+    "description": null,
+    "cost": "30.00",
+    "amount": 10,
+    "photo": ""
+  }
+},
+
+{
+  "model": "shop.order",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "product": 1,
+    "amount": 5,
+    "create_date": "2021-03-17T12:34:46.296Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 3,
+  "fields": {
+    "user": 1,
+    "product": 1,
+    "amount": 7,
+    "create_date": "2021-03-17T12:35:01.511Z"
+  }
+},
+{
+  "model": "shop.return",
+  "pk": 10,
+  "fields": {
+    "order": 2,
+    "create_date": "2021-03-23"
+  }
+}
+]

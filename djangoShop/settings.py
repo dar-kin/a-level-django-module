@@ -128,3 +128,10 @@ LOGIN_REDIRECT_URL = reverse_lazy("shop:main")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "static/")
 MEDIA_URL = "/media/"
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': 'd:/foo/bar',
+    }
+}

@@ -23,13 +23,22 @@
     <td><a href="{% url 'shop:update_product' elem.id %}">Update</a></td>
     {% else %}
         {% if request.user.is_authenticated %}
-        <td><form method="post" action="{% url 'shop:product_list' %}">
+        <td><form method="post" action="{% url 'shop:create_order' %}">
             {% csrf_token %}
-            {% if product == elem.id %}
-                {{ error_form.as_p }}
-            {% else %}
-            {{ form.as_p }}
+            {% if invalid_form_number == elem.id %}
+
             {% endif %}
+            {{ empty_form.as_p }}
+        {% if elem.id == invalid_product_number %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li
+                        {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}{{ message }}{% endif %}
+                </li>
+            {% endfor %}
+            {% endif %}
+            </ul>
             <input name="product" type="hidden" value="{{ elem.id }}">
             <input name="user" type="hidden" value="{{ request.user.id }}">
             <input type="submit" value="Buy">

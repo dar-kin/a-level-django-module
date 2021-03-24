@@ -20,12 +20,17 @@
         <td>Date: {{ elem.create_date }}</td>
         <td>Total cost: {{ elem.total_cost }}</td>
 
-        <td><form method="post" action="{% url 'shop:orders' %}">
+        <td><form method="post" action="{% url 'shop:create_return' %}">
                 {% csrf_token %}
-                {% if order == elem.id %}
-                    {{ error_form.as_p }}
-                {% else %}
-                    {{ form.as_p }}
+                {{ form.as_p }}
+                {% if invalid_return_creation == elem.id %}
+                <ul class="messages">
+                {% for message in messages %}
+                <li
+                        {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}{{ message }}{% endif %}
+                </li>
+            {% endfor %}
                 {% endif %}
                 <input name="order" type="hidden" value="{{ elem.id }}">
                 <input type="submit" value="Return">

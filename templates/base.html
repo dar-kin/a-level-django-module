@@ -6,6 +6,20 @@
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
-{%  block content %} {% endblock %}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR or  message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+        <li
+                {% if message.tags %} class="{{ message.tags }}" >
+            {{ message }}{% endif %}
+        </li>
+            {% endif %}
+    {% endfor %}
+    </ul>
+    {% endif %}
+{%  block content %}
+
+ {% endblock %}
 </body>
 </html>
