@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +138,16 @@ CACHES = {
         'LOCATION': 'd:/foo/bar',
     }
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':
+    [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest.misc.ExpiringTokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
+
+TOKEN_EXPIRING_TIME = 30

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from myuser.models import MyUser
-from shop.models import Product, Order
+from shop.models import Product, Order, Return
 
 
 SEX = [(1, "female"), (2, "male"), (3, "unknown")]
@@ -25,17 +25,20 @@ class Task1Serializer(serializers.Serializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
     password = serializers.CharField(write_only=True)
 
     class Meta:
         model = MyUser
-        fields = ["username", "password"]
+        fields = ["id", "username", "password"]
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = Product
-        fields = ["name", "description", "cost", "amount"]
+        fields = ["id", "name", "description", "cost", "amount"]
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -53,9 +56,11 @@ class OrderSerializer(serializers.ModelSerializer):
 
 
 class SimpleOrderSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = Order
-        fields = ["product", "amount", "create_date"]
+        fields = ["id", "product", "amount", "create_date"]
 
 
 class UserWithOrdersSerializer(serializers.ModelSerializer):
@@ -72,4 +77,18 @@ class UserWithOrdersSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyUser
         fields = ["username", "password", "orders"]
+
+
+class ReturnSerializer(serializers.ModelSerializer):
+    create_date = serializers.DateField(read_only=True)
+
+    class Meta:
+        model = Return
+        fields = ["order", "create_date"]
+
+
+class ExpireTokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ["key", ""]
+
 
