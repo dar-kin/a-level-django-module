@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
     'rest_framework',
-    'rest_framework.authtoken',
     'rest',
 ]
 
@@ -150,4 +149,4 @@ REST_FRAMEWORK = {
     ]
 }
 
-TOKEN_EXPIRING_TIME = 30
+TOKEN_EXPIRING_TIME = 60

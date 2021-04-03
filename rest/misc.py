@@ -45,7 +45,6 @@ class ExpiringTokenAuthentication(TokenAuthentication):
     def authenticate_credentials(self, key):
         user, token = super().authenticate_credentials(key)
         if (timezone.now() - token.last_action).seconds > settings.TOKEN_EXPIRING_TIME:
-            token.key = ExpiringToken.generate_key()
             token.delete()
             raise AuthenticationFailed("Token has expired. Please, obtain a new one.")
         token.save()
