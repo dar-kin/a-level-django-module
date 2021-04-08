@@ -57,6 +57,13 @@ class OrderSerializer(serializers.ModelSerializer):
 
 class SimpleOrderSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
+    create_date = serializers.DateTimeField(read_only=True)
+
+    def validate_amount(self, value):
+        if value <= 0:
+            raise serializers.ValidationError("Invalid amount")
+        return value
+
 
     class Meta:
         model = Order

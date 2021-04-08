@@ -1,4 +1,5 @@
 from django.forms import ModelForm, ImageField
+from django.forms import ValidationError
 from .models import Order, Return, Product
 from django.forms import HiddenInput
 from datetime import timedelta
@@ -17,7 +18,7 @@ class OrderForm(ModelForm):
         self.product = self.cleaned_data.get("product")
         self.user = self.cleaned_data.get("user")
         if amount <= 0:
-            self.add_error("amount", "Invalid amount")
+            raise ValidationError("Invalid amount")
         return amount
 
 

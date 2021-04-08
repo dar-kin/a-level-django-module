@@ -1,0 +1,32 @@
+[
+    {
+      "model": "shop.product",
+      "pk": 1,
+      "fields": {
+        "name": "product",
+        "description": "product",
+        "cost": 100,
+        "amount": 100
+      }
+    },
+  {
+      "model": "shop.product",
+      "pk": 2,
+      "fields": {
+        "name": "product",
+        "description": "product",
+        "cost": 1000,
+        "amount": 10000
+      }
+    },
+  {
+      "model": "shop.product",
+      "pk": 3,
+      "fields": {
+        "name": "product",
+        "description": "product",
+        "cost": 100,
+        "amount": 100
+      }
+    }
+]
