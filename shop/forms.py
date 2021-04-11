@@ -2,8 +2,6 @@ from django.forms import ModelForm, ImageField
 from django.forms import ValidationError
 from .models import Order, Return, Product
 from django.forms import HiddenInput
-from datetime import timedelta
-from django.utils import timezone
 
 
 class OrderForm(ModelForm):
@@ -24,13 +22,6 @@ class OrderForm(ModelForm):
 
 class ReturnForm(ModelForm):
 
-    def clean(self):
-        self.order = self.cleaned_data.get("order")
-        if timezone.now() > self.order.create_date + timedelta(minutes=3):
-            self.add_error(None, "Return time expired")
-        elif Return.objects.filter(order=self.order).exists():
-            self.add_error(None, "This return already exists")
-
     class Meta:
         fields = ["order"]
         model = Return
@@ -45,9 +36,9 @@ class CreateUpdateProductForm(ModelForm):
         cleaned_data = super().clean()
         cost = cleaned_data.get("cost")
         amount = cleaned_data.get("amount")
-        if amount < 0:
+        if amount <= 0:
             self.add_error("amount", "Invalid amount")
-        if cost < 0:
+        if cost <= 0:
             self.add_error("cost", "Invalid cost")
 
     class Meta:

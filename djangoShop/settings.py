@@ -150,3 +150,6 @@ REST_FRAMEWORK = {
 }
 
 TOKEN_EXPIRING_TIME = 60
+
+CELERY_RESULT_BACKEND = 'redis://localhost'
+BROKER_URL = 'redis://localhost'

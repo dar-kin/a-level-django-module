@@ -2,13 +2,14 @@ from django.test import TestCase
 from shop.models import Product, Order, Return
 from myuser.models import MyUser
 from shop.exceptions import NotEnoughMoneyException, NotEnoughProductException
+from django.db.models import ObjectDoesNotExist
 
 
 def get_fixture(name):
     return "fixtures/" + name
 
 
-class TestOrderSave(TestCase):
+class TestOrder(TestCase):
     fixtures = [get_fixture("user.json"), get_fixture("product.json")]
 
     def setUp(self) -> None:
@@ -46,4 +47,40 @@ class TestOrderSave(TestCase):
 
     def test_possibility_to_have_zero_amount_after_order(self):
         self.assertEqual(self.product_test_zero_amount.amount, 0)
+
+class TestOderDeletion(TestCase):
+    fixtures = [get_fixture("user.json"), get_fixture("product.json")]
+
+    def setUp(self) -> None:
+        self.user = MyUser.objects.get(id=1)
+        self.product = Product.objects.get(id=1)
+        self.order = Order.objects.create(user=self.user, product=self.product, amount=10)
+        self.order.delete()
+
+    def test_user_received_money_back(self):
+        self.assertEqual(self.user.wallet, 10000)
+
+    def test_product_received_amount_back(self):
+        self.assertEqual(self.product.amount, 100)
+
+
+class ReturnDeletion(TestCase):
+    fixtures = [get_fixture("user.json"), get_fixture("product.json")]
+
+    def setUp(self) -> None:
+        user = MyUser.objects.get(id=1)
+        product = Product.objects.get(id=1)
+        test_order = Order.objects.create(user=user, product=product, amount=10)
+        test_order1 = Order.objects.create(user=user, product=product, amount=10)
+        return1 = Return.objects.create(order=test_order)
+        return2 = Return.objects.create(order=test_order1)
+        return1.delete(approved=True)
+        return2.delete(approved=False)
+
+    def test_approved_return(self):
+        with self.assertRaises(ObjectDoesNotExist):
+            Order.objects.get(id=1)
+
+    def test_deleted_return(self):
+        self.assertEquals(len(Order.objects.filter(id=2)), 1)
 

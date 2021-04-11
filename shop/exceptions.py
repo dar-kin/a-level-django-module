@@ -4,3 +4,11 @@ class NotEnoughMoneyException(Exception):
 
 class NotEnoughProductException(Exception):
     pass
+
+
+class ReturnTimeExpired(Exception):
+    pass
+
+
+class ReturnAlreadyExists(Exception):
+    pass

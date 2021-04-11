@@ -23,16 +23,9 @@
     <td><a href="{% url 'shop:update_product' elem.id %}">Update</a></td>
     {% else %}
         {% if request.user.is_authenticated %}
-        <td><form method="post" action="{% url 'shop:create_order' %}">
+        <td><form method="post" action="{% url 'shop:create_order' %}" onsubmit="return validateOrder(this)">
             {% csrf_token %}
-
-
-        {% if elem.id == invalid_form_number %}
-            {{ error_form.as_p }}
-        {% else %}
             {{ empty_form.as_p }}
-        {% endif %}
-
             <input name="product" type="hidden" value="{{ elem.id }}">
             <input name="user" type="hidden" value="{{ request.user.id }}">
             <input type="submit" value="Buy">

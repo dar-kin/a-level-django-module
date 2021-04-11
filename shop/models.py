@@ -1,6 +1,8 @@
 from django.db import models
 from myuser.models import MyUser
-from .exceptions import NotEnoughMoneyException, NotEnoughProductException
+from .exceptions import NotEnoughMoneyException, NotEnoughProductException, ReturnAlreadyExists, ReturnTimeExpired
+from datetime import timedelta
+from django.utils import timezone
 
 
 class Product(models.Model):
@@ -46,11 +48,19 @@ class Order(models.Model):
 
 
 class Return(models.Model):
-    order = models.OneToOneField(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     create_date = models.DateField(auto_now_add=True)
 
     class Meta:
         ordering = ["create_date"]
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        if timezone.now() > self.order.create_date + timedelta(minutes=3):
+            raise ReturnTimeExpired
+        elif Return.objects.filter(order=self.order).exists():
+            raise ReturnAlreadyExists
+        super().save(force_insert=False, force_update=False, using=None, update_fields=None)
 
     def delete(self, using=None, keep_parents=False, approved=False):
         if approved:

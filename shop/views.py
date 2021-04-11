@@ -1,15 +1,12 @@
-from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, UpdateView, CreateView, RedirectView, DeleteView
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, reverse
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from .models import Product, Order, Return
 from .forms import OrderForm, ReturnForm, CreateUpdateProductForm
 from myuser.misc import SuperUserRequired
-from .exceptions import NotEnoughMoneyException, NotEnoughProductException
+from .exceptions import NotEnoughMoneyException, NotEnoughProductException, ReturnAlreadyExists, ReturnTimeExpired
 from django.contrib import messages
-from .misc import check_invalid_form
 
 
 class MainView(TemplateView):
@@ -21,10 +18,6 @@ class ProductList(ListView):
     model = Product
     extra_context = {"empty_form": OrderForm()}
     paginate_by = 3
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return check_invalid_form(self.request, context, OrderForm)
 
 
 class CreateOrder(CreateView):
@@ -45,8 +38,6 @@ class CreateOrder(CreateView):
         return redirect(reverse("shop:product_list"))
 
     def form_invalid(self, form):
-        self.request.session['errors'] = form.errors
-        self.request.session["invalid_form_number"] = form.product.id
         return redirect(reverse("shop:product_list"))
 
 
@@ -56,10 +47,6 @@ class OrderList(ListView):
     paginate_by = 3
     extra_context = {"form": ReturnForm}
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return check_invalid_form(self.request, context, ReturnForm)
-
 
 class CreateReturn(CreateView):
     model = Return
@@ -67,12 +54,17 @@ class CreateReturn(CreateView):
     success_url = reverse_lazy('shop:orders')
 
     def form_valid(self, form):
-        messages.add_message(self.request, messages.SUCCESS, "Return has been requested")
-        return super(CreateReturn, self).form_valid(form)
+        try:
+            self.object = form.save()
+        except ReturnTimeExpired:
+            messages.add_message(self.request, messages.ERROR, "Return time expired")
+        except ReturnAlreadyExists:
+            messages.add_message(self.request, messages.ERROR, "Return already exists")
+        else:
+            messages.add_message(self.request, messages.SUCCESS, "Return has been requested")
+        return redirect(reverse("shop:orders"))
 
     def form_invalid(self, form):
-        self.request.session['errors'] = form.errors
-        self.request.session["invalid_form_number"] = form.order.id
         return redirect(reverse("shop:orders"))
 
 
