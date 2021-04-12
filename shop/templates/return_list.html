@@ -4,6 +4,10 @@
 {% block content %}
     {% include "user.html" %}
 <h2>Return list</h2>
+    <form method="post" action="{% url 'shop:approve_all_returns' %}">
+    <input type="submit" value="Approve all">
+    {% csrf_token %}
+    </form>
     <table border="1">
     <tr>
         <td>Order</td>

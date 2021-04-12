@@ -40,6 +40,8 @@ class Order(models.Model):
     def delete(self, using=None, keep_parents=False):
         self.user.wallet += self.total_cost
         self.product.amount += self.amount
+        self.user.save()
+        self.product.save()
         super().delete(using=None, keep_parents=False)
 
     @property

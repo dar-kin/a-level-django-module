@@ -3,8 +3,6 @@
 {% block title %} Return approved {% endblock %}
 
 {% block content %}
-    <h2>Return approved</h2>
-    <p>{{ user.username }} was returned {{ order_total_cost }}. Current money {{ user.wallet }}</p>
-    <p>{{ product }} was returned {{ order_amount }}. Current supplies {{ product.amount }}</p>
-<a href="{% url 'shop:return_list' %}">Return list</a>
+    {% include "user.html" %}
+<h2>Return were successfully approved</h2>
 {% endblock %}

@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, ListView, UpdateView, CreateView, RedirectView, DeleteView
+from django.views.generic import TemplateView, ListView, UpdateView, CreateView, RedirectView, DeleteView, View
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, reverse
 from django.urls import reverse_lazy
@@ -7,6 +7,8 @@ from .forms import OrderForm, ReturnForm, CreateUpdateProductForm
 from myuser.misc import SuperUserRequired
 from .exceptions import NotEnoughMoneyException, NotEnoughProductException, ReturnAlreadyExists, ReturnTimeExpired
 from django.contrib import messages
+from shop.tasks import approve_all_returns
+from django.shortcuts import render
 
 
 class MainView(TemplateView):
@@ -110,3 +112,10 @@ class DeleteReturn(DeleteView):
 
 class RedirectToMainView(RedirectView):
     url = reverse_lazy("shop:main")
+
+
+class CeleryReturnView(SuperUserRequired, View):
+
+    def post(self, request, *args, **kwargs):
+        approve_all_returns.delay()
+        return render(request, "return_approved.html", {})

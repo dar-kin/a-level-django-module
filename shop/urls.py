@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import ProductList, MainView, OrderList, ReturnSuccessView, \
-    UpdateProductView, ReturnList, CreateProductView, CreateOrder, CreateReturn, DeleteReturn
+    UpdateProductView, ReturnList, CreateProductView, CreateOrder, CreateReturn, DeleteReturn, CeleryReturnView
 
 
 app_name = "shop"
@@ -16,4 +16,5 @@ urlpatterns = [
     path("create_order", CreateOrder.as_view(), name="create_order"),
     path("create_return", CreateReturn.as_view(), name="create_return"),
     path("delete_return/<int:pk>", DeleteReturn.as_view(), name="delete_return"),
+    path("aprrove_all_returns/", CeleryReturnView.as_view(), name="approve_all_returns"),
 ]
